@@ -1,0 +1,44 @@
+📘 README 1 — feat: set up Django project with PostgreSQL
+Step 1 — Setup Django Project with PostgreSQL
+🎯 Objective
+Initialize a clean, production-ready Django project configured with a PostgreSQL database.
+
+🛠️ Steps
+1. Create a virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+2. Install Django & psycopg2
+pip install django psycopg2-binary python-dotenv
+
+3. Create the project
+django-admin startproject ecommerce_backend
+cd ecommerce_backend
+
+4. Configure PostgreSQL in settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ecommerce_db',
+        'USER': 'postgres',
+        'PASSWORD': 'yourpassword',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+5. Load environment variables from .env
+Create a .env file:
+DB_NAME=ecommerce_db
+DB_USER=postgres
+DB_PASSWORD=yourpassword
+DB_HOST=localhost
+DB_PORT=5432
+SECRET_KEY=your_secret_key
+
+Install dotenv:
+pip install python-dotenv
+
+📎 Commit message:
+ feat: set up Django project with PostgreSQL
+

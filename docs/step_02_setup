@@ -1,0 +1,53 @@
+📘 README 2 — feat: implement user authentication with JWT
+Step 2 — Implement User Authentication with JWT
+🎯 Objective
+Set up a JSON Web Token (JWT) authentication system for secure user registration, login, and management.
+
+🛠️ Steps
+1. Install Django REST Framework & JWT
+pip install djangorestframework djangorestframework-simplejwt
+
+2. Add DRF in settings.py
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+3. Create the users app
+python manage.py startapp users
+
+4. Create the user model (optional if using CustomUser)
+In users/models.py if using a custom user.
+5. Create serializers
+users/serializers.py:
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
+
+6. Create views
+users/views.py:
+class RegisterAPIView(generics.CreateAPIView):
+    serializer_class = RegisterSerializer
+
+7. Add URLs
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+urlpatterns = [
+    path("register/", RegisterAPIView.as_view()),
+    path("login/", TokenObtainPairView.as_view()),
+    path("refresh/", TokenRefreshView.as_view()),
+]
+
+📎 Commit message:
+ feat: implement user authentication with JWT

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+from datetime import timedelta
 # Load environment variables from .env file
 from dotenv import load_dotenv
 load_dotenv()
@@ -126,6 +127,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = "users.User"  # Ensures Django uses the custom model
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -148,6 +150,13 @@ REST_FRAMEWORK = {
 }
 
 
+SIMPLE_JWT = {
+    # Access token lifespan
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+
+    # Refresh token lifespan
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
 
 
 
