@@ -1,21 +1,27 @@
-# VS Code
-.vscode/
 # Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Env
-.env/
+# Virtual environment
 venv/
+env/
 
-# Django
-*.sqlite3
-/static/
+# Django secret files
+.env
+*.env
+.env/
+
+# Django stuff
+*.log
+staticfiles/
 media/
 
-# IDE & OS
+# SQLite (si utilisé)
+db.sqlite3
+
+# IDE files
 .vscode/
 .idea/
-.DS_Store
+*.swp
