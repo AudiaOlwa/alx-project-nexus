@@ -1,0 +1,49 @@
+📘 README 3 — feat: add product APIs with filtering and pagination
+Step 3 — Product & Category CRUD + Filtering + Sorting + Pagination
+🎯 Objective
+Create products and categories apps with models, serializers, CRUD views, filtering, sorting, and pagination.
+
+🛠️ Steps
+1. Create the apps
+python manage.py startapp products
+python manage.py startapp categories
+
+2. Models (example)
+categories/models.py:
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+
+products/models.py:
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+3. Serializers
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = "__all__"
+
+4. Filtering, Sorting & Pagination
+Install django-filter:
+pip install django-filter
+
+In settings.py:
+REST_FRAMEWORK = {
+    ...
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+}
+
+5. Views with filtering
+class ProductListAPIView(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filterset_fields = ["category"]
+    ordering_fields = ["price", "created_at"]
+
+📎 Commit message:
+ feat: add product APIs with filtering and pagination
