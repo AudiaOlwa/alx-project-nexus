@@ -19,6 +19,8 @@ from django.urls import path, include
 # Registers ProductViewSet automatically under /api/products/
 from rest_framework.routers import DefaultRouter
 from products.views import ProductViewSet
+# Exposes schema and UI documentation for developers
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 
 router = DefaultRouter()
@@ -29,5 +31,8 @@ urlpatterns = [
     # Include authentication routes under /api/auth/
     path("api/auth/", include("users.urls")),
     path("api/", include(router.urls)),
-
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),  # raw schema
+    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),  # UI
+    path("api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),  # Alternative UI
 ]
+

@@ -157,5 +157,10 @@ SIMPLE_JWT = {
 }
 
 
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Ecommerce API",
+    "DESCRIPTION": "API for E-commerce Backend (Project Nexus)",
+    "VERSION": "1.0.0",
+}
 
 
