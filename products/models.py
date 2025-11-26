@@ -1,5 +1,5 @@
 from django.db import models
-
+from categories.models import Category
 # Create your models here.
 # Represents a product sold on the e-commerce platform
 

@@ -1,4 +1,4 @@
-📘 README 1 — feat: set up Django project with PostgreSQL
+📘 README 1 — feat: set up ecommerce Django project with PostgreSQL
 Step 1 — Setup Django Project with PostgreSQL
 🎯 Objective
 Initialize a clean, production-ready Django project configured with a PostgreSQL database.

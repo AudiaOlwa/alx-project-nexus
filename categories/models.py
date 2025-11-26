@@ -3,9 +3,11 @@ from django.utils.text import slugify
 # Create your models here.
 # Represents a logical grouping for products (e.g., Electronics, Books)
 
-
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    # Index added because "name" is frequently used for lookups, filtering
+    # and admin search. This improves query performance.
+    name = models.CharField(max_length=100, unique=True, db_index=True) # Explicit index for faster filtering
+    # Slug is unique → Django automatically creates an index.
     slug = models.SlugField(max_length=120, unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -17,4 +19,3 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-

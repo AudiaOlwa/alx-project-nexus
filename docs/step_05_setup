@@ -1,0 +1,51 @@
+README 5 — perf: optimize database queries with indexing
+# Database Index Optimization — Project Nexus
+
+This document explains the database indexing strategy used to improve
+performance in the **Product**, **Category**, and **User** models.
+
+Indexes are essential for speeding up database lookups, especially in
+e-commerce applications where products must be filtered and sorted efficiently.
+
+---
+
+## 🚀 1. Why Indexing Matters
+
+Without indexes, PostgreSQL must scan the entire table ("full table scan")
+each time a query uses:
+
+- `WHERE category = ?`
+- `ORDER BY price`
+- `WHERE slug = ?`
+- `WHERE name ILIKE '%something%'`
+
+Indexes dramatically reduce query time from **milliseconds → microseconds**.
+
+---
+
+## 📌 2. Category Model Indexes
+
+### Added:
+- `name` (`db_index=True`)
+- `slug` (indexed automatically because `unique=True`)
+
+Reason:
+- Categories are frequently filtered or looked up in product listings.
+- Slug is used for SEO URLs.
+
+---
+
+## 📌 3. Product Model Indexes
+
+### Added:
+- `title` (search filter)
+- `price` (sorting & filtering)
+- `category_id` (foreign key lookup)
+- `is_active` (frequent filtering)
+- `created_at` (ordering)
+
+### Composite Indexes:
+```python
+models.Index(fields=["category", "price"])
+models.Index(fields=["slug", "category"])
+models.Index(fields=["category", "is_active"])
