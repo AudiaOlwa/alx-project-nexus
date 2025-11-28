@@ -108,7 +108,7 @@ During the first week:
 
 ---
 
-## 📂 E-Commerce Project Documentation
+## 📂 E-Commerce Project README
 
 The detailed documentation for the **E-Commerce Backend Project** is located in the `ecommerce/` folder of this repository.
 It includes:
