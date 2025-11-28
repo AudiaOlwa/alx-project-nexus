@@ -108,6 +108,20 @@ During the first week:
 
 ---
 
+## 📂 E-Commerce Project Documentation
+
+The detailed documentation for the **E-Commerce Backend Project** is located in the `ecommerce/` folder of this repository.
+It includes:
+
+* Project objectives and main features
+* Technologies used
+* Folder structure and app breakdown
+* API endpoints and usage instructions
+* Deployment and configuration guidelines
+
+You can navigate to `ecommerce/README.md` to explore the complete backend project documentation.
+
+
 ## 🙌 Acknowledgments
 
 Special thank you to ALX, mentors, and fellow learners for guidance, support, and collaboration throughout this journey.
