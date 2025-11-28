@@ -24,7 +24,49 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, Sp
 from django.http import HttpResponse
 
 def home_view(request):
-    return HttpResponse("Welcome to ALX Ecommerce Project NEXUS  Successfully deployed with Render!")
+    content = """
+    <h1>ALX Ecommerce Project NEXUS</h1>
+    <p>Successfully deployed with Render 🎉</p>
+
+    <h2>Available API Endpoints</h2>
+
+    <h3>🔐 Authentication</h3>
+    <ul>
+        <li><a href="/api/auth/register/">POST /api/auth/register/</a> — Register new user</li>
+        <li><a href="/api/auth/login/">POST /api/auth/login/</a> — Login & obtain tokens</li>
+    </ul>
+
+    <h3>📦 Products</h3>
+    <ul>
+        <li><a href="/api/products/">GET /api/products/</a> — List products</li>
+        <li>/api/products/&lt;id&gt;/ — Retrieve, update, delete product</li>
+        <li>Filtering: /api/products/?category=ID</li>
+        <li>Search: /api/products/?search=keyword</li>
+        <li>Ordering: /api/products/?ordering=price</li>
+    </ul>
+
+    <h3>📁 Categories</h3>
+    <ul>
+        <li><a href="/api/categories/">GET /api/categories/</a> — List categories</li>
+        <li>/api/categories/&lt;id&gt;/ — Retrieve, update, delete category</li>
+    </ul>
+
+    <h3>🛠 Admin</h3>
+    <ul>
+        <li><a href="/admin/">/admin/</a></li>
+    </ul>
+
+    <h3>📚 API Documentation</h3>
+    <ul>
+        <li><a href="/api/schema/">/api/schema/</a> — OpenAPI schema (JSON/YAML)</li>
+        <li><a href="/api/docs/">/api/docs/</a> — Swagger UI</li>
+        <li><a href="/api/redoc/">/api/redoc/</a> — ReDoc documentation</li>
+    </ul>
+
+    <hr>
+    <p>Backend Engineering — Project Nexus (ALX)</p>
+    """
+    return HttpResponse(content)
 
 router = DefaultRouter()
 router.register(r"products", ProductViewSet, basename="product")
@@ -32,10 +74,10 @@ router.register(r"products", ProductViewSet, basename="product")
 urlpatterns = [
     path('', home_view),
     path('admin/', admin.site.urls),
-    path("api/", include(router.urls)),
     # Include authentication routes under /api/auth/
     path("api/auth/", include("users.urls")),
     path("api/", include(router.urls)),
+    path("api/categories/", include("categories.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),  # raw schema
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),  # UI
     path("api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),  # Alternative UI
