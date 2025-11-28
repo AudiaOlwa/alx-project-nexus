@@ -21,12 +21,16 @@ from rest_framework.routers import DefaultRouter
 from products.views import ProductViewSet
 # Exposes schema and UI documentation for developers
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from django.http import HttpResponse
 
+def home_view(request):
+    return HttpResponse("Welcome to ALX Ecommerce Project NEXUS  Successfully deployed with Render!")
 
 router = DefaultRouter()
 router.register(r"products", ProductViewSet, basename="product")
 
 urlpatterns = [
+    path('', home_view),
     path('admin/', admin.site.urls),
     # Include authentication routes under /api/auth/
     path("api/auth/", include("users.urls")),
