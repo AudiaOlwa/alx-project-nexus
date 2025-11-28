@@ -32,6 +32,7 @@ router.register(r"products", ProductViewSet, basename="product")
 urlpatterns = [
     path('', home_view),
     path('admin/', admin.site.urls),
+    path("api/", include(router.urls)),
     # Include authentication routes under /api/auth/
     path("api/auth/", include("users.urls")),
     path("api/", include(router.urls)),
