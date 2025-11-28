@@ -30,12 +30,6 @@ def home_view(request):
 
     <h2>Available API Endpoints</h2>
 
-    <h3>🔐 Authentication</h3>
-    <ul>
-        <li><a href="/api/auth/register/">POST /api/auth/register/</a> — Register new user</li>
-        <li><a href="/api/auth/login/">POST /api/auth/login/</a> — Login & obtain tokens</li>
-    </ul>
-
     <h3>📦 Products</h3>
     <ul>
         <li><a href="/api/products/">GET /api/products/</a> — List products</li>
